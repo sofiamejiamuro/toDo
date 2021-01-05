@@ -21,6 +21,7 @@ const btnInput = document.querySelector('#btnInput');
 const addInput = document.querySelector('#formulario');
 const textInput = document.querySelector('#topic');
 const listContainer = document.querySelector('#topic-list');
+const btnClearItemsLocalStorage = document.querySelector('#clearTopicsLocalStorage');
 let topics = [];
 
 // Listeners
@@ -28,6 +29,7 @@ const Listeners = () => {
     document.addEventListener('DOMContentLoaded', startApp);
     textInput.addEventListener('keyup', checkInput);
     addInput.addEventListener('submit', addItem);
+    btnClearItemsLocalStorage.addEventListener('click', deleteItemsLocalStorage)
 };
 
 // Functions
@@ -122,12 +124,21 @@ const createHtml = () => {
 const updateStorage = () => {
     localStorage.setItem('topics', JSON.stringify(topics));
     // console.log(JSON.stringify(topics));
-}
+};
 
 const cleanHtml = () => {
     while (listContainer.firstChild) {
         listContainer.removeChild(listContainer.firstChild);
     };
+};
+
+const deleteItemsLocalStorage = () => {
+    topics = JSON.parse(localStorage.getItem('topics')) || [];
+    console.log(topics);
+    topics.length = 0;
+    console.log(topics);
+    alert('Se han borrado todos los elementos de la lista Topics del localStorage')
+    createHtml();
 };
 
 Listeners();

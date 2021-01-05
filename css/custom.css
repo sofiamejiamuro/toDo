@@ -36,3 +36,8 @@ h2 {
     color: red;
     cursor: pointer;
 }
+
+.btnLocalStorage {
+    background-color: rgb(69, 181, 201);
+    color: #FFF
+}
